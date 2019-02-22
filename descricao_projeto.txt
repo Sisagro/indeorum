@@ -1,0 +1,20 @@
+Arquivo indeorum.sql: script para criar as tabelas no BD.
+Arquivo importacao.sql: importação dos registros do arquivo data.tsv
+
+1 - Postgresql foi o BD selecionado para realizar o teste.
+
+2 - No banco foi criada uma FUNCTION "public.importacao", que ao ser executada, irá importar todos registros do arquivo.
+
+3 - Foi criada uma modelagem de dados, onde consiste em 6 tabelas.
+
+	* Tabela imp_registros: O primeiro Cursor da FNC irá importar todos os registro do arquivo "data.tsv", validando tipos de dados e fazendo a 
+"limpeza" dos dados que não são validos.
+
+	* O segundo Cursor da FNC irá distribuir os dados nas tabelas de cadastro do modelo, sendo elas (trabalhos,tipos_artigos, instituicoes, pesquisadores)
+	
+	* Junto neste segundo Cursor, serão preservados os novos códigos inseridos, ou já existentes, nessas tabelas, para que por fim, a nova codificação 
+seja inserida na tabela "producoes". 
+	Esta tabela irá facilitar as consultas ao BD, possibilitando filtrar os registros por trabalhos, artigos, instituições, pesquisadores e 
+períodos de data.
+
+	As linhas da FNC estão comentadas, para facilitar o entendimento.
